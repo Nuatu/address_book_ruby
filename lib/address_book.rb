@@ -1,9 +1,14 @@
-class Address_book
+class AddressBook
   def initialize(description)
     @description = description
+    @contacts = []
   end
 
   def description
     @description
+  end
+
+  def contacts
+    @contacts
   end
 end
