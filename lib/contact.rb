@@ -1,25 +1,39 @@
 class Contact
+   @@contacts = []
+
   def initialize(name)
     @name = name
-    @emails = []
-    @phones = []
-    @addresses = []
+    @email = []
+    @phone = []
+    @address = []
+  end
+
+  def Contact.all
+    @@contacts
+  end
+
+  def Contact.clear
+    @@contacts = []
+  end
+
+  def save
+    @@contacts << self
   end
 
   def name
     @name
   end
 
-  def emails
-    @emails
+  def email
+    @email
   end
 
-  def phones
-    @phones
+  def phone
+    @phone
   end
 
-  def addresses
-    @addresses
+  def address
+    @address
   end
 end
 
