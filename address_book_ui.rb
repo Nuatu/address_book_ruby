@@ -30,7 +30,7 @@ def main_menu_selector(input)
       puts "\nSorry, you have no contacts"
       return
     end
-    Contact.all.each_with_index { |contact, index| puts "#{index + 1}. #{contact.name} \n Phone: #{contact.phone} Email: #{contact.email} Address: #{contact.address}"}
+    Contact.all.each_with_index { |contact, index| puts "#{index + 1}. #{contact.name} \n Phone: #{contact.phones} Email: #{contact.emails} Address: #{contact.addresses}"}
     puts "\nEnter a contact number to modify or press 'm' to exit"
     modify_choice = gets.chomp.to_i
     unless modify_choice == 'm'
@@ -46,7 +46,7 @@ def main_menu_selector(input)
 end
 
 def contact_editor(input)
- puts "\nYou're modifiying the contact: #{Contact.all[input - 1].name} \n Phone: #{Contact.all[input - 1].phone} Email: #{Contact.all[input - 1].email} Address: #{Contact.all[input - 1].address}"
+ puts "\nYou're modifiying the contact: #{Contact.all[input - 1].name} \nEmail: #{Contact.all[input - 1].email_list} \nPhone: #{Contact.all[input - 1].phone_list} \nAddress: #{Contact.all[input - 1].address_list}"
   puts "\nPress '1' to add an email address"
   puts "Press '2' to add a phone number"
   puts "Press '3' to add an address"
@@ -60,40 +60,40 @@ def contact_editor(input)
     if editing_choice == 1
       puts "\nEmail address?"
       new_email = gets.chomp
-      Contact.all[input-1].email << new_email
+      Contact.all[input-1].emails << Email.new(new_email)
       contact_editor(input)
 
     elsif editing_choice == 2
       puts "\nPhone?"
       new_phone = gets.chomp
-      Contact.all[input-1].phone << new_phone
+      Contact.all[input-1].phones << Phone.new(new_phone)
       contact_editor(input)
 
     elsif editing_choice == 3
       puts "\nAddress?"
       new_address = gets.chomp
-      Contact.all[input-1].address << new_address
+      Contact.all[input-1].addresses << Address.new(new_address)
       contact_editor(input)
 
     elsif editing_choice == 4
       puts "\nEmail address to delete?"
-      Contact.all[input-1].email.each_with_index { | email, index | puts "#{index + 1}. #{email}" }
+      Contact.all[input-1].emails.each_with_index { | email, index | puts "#{index + 1}. #{email.email}" }
       deleted_email = gets.chomp.to_i
-      Contact.all[input-1].email.delete_at(deleted_email-1)
+      Contact.all[input-1].emails.delete_at(deleted_email-1)
       contact_editor(input)
 
     elsif editing_choice == 5
       puts "\nPhone to delete?"
-      Contact.all[input-1].phone.each_with_index { | phone, index | puts "#{index + 1}. #{phone}" }
+      Contact.all[input-1].phones.each_with_index { | phone, index | puts "#{index + 1}. #{phone.phone}" }
       deleted_phone = gets.chomp.to_i
-      Contact.all[input-1].phone.delete_at(deleted_phone-1)
+      Contact.all[input-1].phones.delete_at(deleted_phone-1)
       contact_editor(input)
 
     elsif editing_choice == 6
       puts "\nAddress to delete?"
-      Contact.all[input-1].address.each_with_index { | address, index | puts "#{index + 1}. #{address}" }
+      Contact.all[input-1].addresses.each_with_index { | address, index | puts "#{index + 1}. #{address.address}" }
       deleted_address = gets.chomp.to_i
-      Contact.all[input-1].address.delete_at(deleted_address-1)
+      Contact.all[input-1].addresses.delete_at(deleted_address-1)
       contact_editor(input)
     end
   end
