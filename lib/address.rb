@@ -1,6 +1,6 @@
 class Address
-  def initialize()
-    @addresses = []
+  def initialize(street, city, state, zip)
+    #
   end
 
   def addresses

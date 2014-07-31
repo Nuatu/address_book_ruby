@@ -1,10 +1,10 @@
 class Phone
-  def initialize()
-    @phones = []
+  def initialize(number)
+    @number = number
   end
 
-  def phones
-    @phones
+  def number
+    @number
   end
 
   def add_phone(new_phone)
