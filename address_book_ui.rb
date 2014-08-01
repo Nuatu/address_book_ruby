@@ -30,8 +30,7 @@ def main_menu_selector(input)
       puts "\nSorry, you have no contacts"
       return
     end
-    Contact.all.each_with_index { |contact, index| puts "#{index + 1}. #{contact.name} \n Phone: #{contact.phones} Email: #{contact.emails} Address: #{contact.addresses}"}
-    puts "\nEnter a contact number to modify or press 'm' to exit"
+"#{index + 1}. #{contact.name} \n Phone: #{contact.phone_list} Email: #{contact.email_list} Address: #{contact.address_list}"}    puts "\nEnter a contact number to modify or press 'm' to exit"
     modify_choice = gets.chomp.to_i
     unless modify_choice == 'm'
       contact_editor(modify_choice)
